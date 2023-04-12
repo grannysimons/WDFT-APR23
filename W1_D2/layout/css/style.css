@@ -28,9 +28,92 @@ html {
 
 body{
     font-family: verdana, Arial, sans-serif;
+    margin: 0;
 }
 nav#top-bar {
     padding: 4px 10px;
     /* font-size: 16px; */
     font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    -webkit-box-shadow: 1px 8px 17px -5px rgba(0,0,0,0.32); 
+    box-shadow: 1px 8px 17px -5px rgba(0,0,0,0.32);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    background-color: white;
+}
+#top-bar>ul {
+    list-style-type: none;
+    /* padding-top: 7px; */
+    display: flex;
+}
+#top-bar>ul>li {
+    display: inline;
+    margin-left: 20px;
+    letter-spacing: 2px;
+}
+#top-bar>ul>li>div{
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+#top-bar>ul>li,
+#top-bar>div
+{
+    padding-right: 20px;
+    padding-left: 20px;
+}
+#top-bar>ul>li:hover,
+#top-bar>div:hover {
+    background-color: lightgray;
+}
+
+main {
+    max-width: 1500px;
+    width: 100%;
+    margin: auto;
+    position: relative;
+}
+
+main>header {
+    width: 100%;
+    /* width: 100vw; */
+    height: 80vh;
+    background-image: url("../images/architect.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5em;
+}
+main>header strong{
+    background-color: black;
+    padding: 10px;
+}
+main>header>h1 {
+    text-align: center;
+    font-weight: lighter;
+}
+main>section>div>article {
+    position: relative;
+}
+main>section>div>article>h3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: black;
+    color: white;
+}
+
+@media (max-width: 601px) {
+    main>header>h1>span,
+    #top-bar>ul{
+        display: none;
+    }
 }
