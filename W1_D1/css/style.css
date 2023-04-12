@@ -1,0 +1,44 @@
+article.fakeText#mainContainer {
+    background-color: red;
+    width: 30%;
+}
+.fakeWords {
+    background-color: rgb(102, 104, 105);
+    /* width: 50%; */
+}
+
+
+article {
+    background-color: blue;
+}
+
+#mainContainer {
+    background-color: khaki;
+}
+main {
+    background-color: yellow;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.boxModel {
+    background-color: indianred;
+    width: 500px;
+    height: 130px;
+    padding: 30px;
+    padding-right: 70px;
+    /* padding: 30px 2px; */
+    /* padding: 2px 40px 10px 12px; */
+    border-right: 15px black dashed;
+    border-bottom: 4px red solid;
+    border-top: 10px dotted yellow;
+    border-left: 3px green solid;
+    margin-left: 50px; 
+    margin-right: 50px; 
+}
+
+.container1{
+    margin-bottom: 20px;
+}
+.container2 {
+    margin-top: -50px;
+}

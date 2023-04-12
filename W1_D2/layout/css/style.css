@@ -1,0 +1,36 @@
+
+/* body>div>h1#top-bar, 
+h1,
+main>section article
+{
+    background-color: blue;
+} */
+
+/* nav#top-bar:hover {
+    background-color: red;
+} */
+
+/* direct sibling */
+/* .summer-house+article{
+    background-color: yellow;
+} */
+
+/* .summer-house article{
+    background-color: gold;
+}
+
+header:hover {
+    background-color: greenyellow;
+} */
+html {
+    font-size: 10px;
+}
+
+body{
+    font-family: verdana, Arial, sans-serif;
+}
+nav#top-bar {
+    padding: 4px 10px;
+    /* font-size: 16px; */
+    font-size: 1.5rem;
+}
