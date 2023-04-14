@@ -6,12 +6,27 @@ main>section article
     background-color: blue;
 } */
 
+#container3 .text {
+    color: red !important;
+}
+
+div.container.main#container3 p.text {
+    color: blue;
+}
+
+.houses .summer-house+article img {
+
+}
+
 /* nav#top-bar:hover {
     background-color: red;
 } */
 
 /* direct sibling */
 /* .summer-house+article{
+    background-color: yellow;
+} */
+/* .summer-house~article{
     background-color: yellow;
 } */
 
