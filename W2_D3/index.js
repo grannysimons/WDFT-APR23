@@ -7,50 +7,53 @@
 
 //RULE 90% CASES: BY DEFAULT, WHEN DEFINING LITERAL OBJECT METHODS: USE FUNCTION DECLARATION
 
-// let soldier = {
-//     strength: 10,
-//     health: 20,
-//     attack: () => {
-//         console.log(this);
-//         return this.strength;
-//     },
-//     receiveDamage: function(damage) {
-//         this.health -= damage;
-//         console.log(this);  //soldier
-//     },
-//     ownWar: {
-//         name: "intern war",
-//         struggleWithOwnProblems: function() {
-//             console.log(this.name);  //ownWar
+let soldier = {
+    strength: 10,
+    health: 20,
+    attack: () => { //ARROW FUNCTION -> THIS: the context inherits from the context of the FUNCTION where it is declared
+        console.log(this);  //{}
+        return this.strength;
+    },
+    receiveDamage: function(damage) {   //FUNCTION DECLARATION -> THIS: the object at the left side of the dot
+        this.health -= damage;
+        console.log(this); //soldier
+    },
+    ownWar: {
+        name: "intern war",
+        struggleWithOwnProblems: function() {   //FUNCTION DECLARATION: soldier.ownWar.struggleWithOwnProblems()
+            console.log(this); //ownWar
 
-//             const calculateOwnProblems = () => {
-//                 console.log("calculateOwnProblems ", this);     //
-//             }
-//             calculateOwnProblems();
+            const calculateOwnProblems = () => {    //ARROW
+                console.log("calculateOwnProblems ", this);  //ownWar   
+            }
+            calculateOwnProblems();
 
-//             const calculateOthersProblems = function () {
-//                 console.log("calculateOthersProblems ", this);  
-//                 //1 - soldier -> 0
-//                 //2 - ownWar -> 2
-//                 //3 - {} -> 3
-//                 //4 - Global object -> 9
-//             }
-//             calculateOthersProblems();
+            const calculateOthersProblems = function () {   //FUNCTION DECLARAION
+                console.log("calculateOthersProblems ", this); //Global Object
+            }
+            calculateOthersProblems();
 
-//             const mainProblem = {
-//                 title: "understanding javascript",
-//                 solveTheProblem: function(){
-//                     console.log("solveTheProblem ", this);  //mainProblema
-//                 },
-//                 makingProblemWorse: () => {
-//                     console.log("makinProblemWorse: ", this);   //onWar
-//                 }
-//             }
-//             mainProblem.solveTheProblem();
-//             mainProblem.makingProblemWorse();
-//         }
-//     }
-// }
+            const mainProblem = {
+                title: "understanding javascript",
+                solveTheProblem: function(){    //FUNCTION DECLARATION
+                    console.log("solveTheProblem ", this); //mainProblema
+                },
+                makingProblemWorse: () => { //ARROW FUNCTION
+                    console.log("makinProblemWorse: ", this); //ownWar
+                }
+            }
+            mainProblem.solveTheProblem();
+            mainProblem.makingProblemWorse();
+        }
+    }
+}
+soldier.ownWar.struggleWithOwnProblems();
+
+const getGrade = (student) => {
+    return student.grade;
+}
+
+const getGrade2 = student => student.grade;
 
 // // soldier.attack();
 // // soldier.receiveDamage(5);
@@ -115,7 +118,10 @@
 //compare values
 //assignation values
 let price1 = 20.99;
-let price2 = 20.99;
+let price2 = 30;
+
+price2 = price1; 
+
 console.log(price1 === price2); //true
 
 let name1 = "Pepe";
@@ -129,6 +135,18 @@ let book1 = {
     author: "Charlotte Bronte",
     editions: ["ed1", "ed2", "ed3", "ed4"]
 }
+let book6 = {
+    author: "Charlotte Bronte",
+    editions: ["ed1", "ed2", "ed3", "ed4"]
+}
+console.log(book1.author == book6.author) ; //true
+console.log(book1 == book6) ; //false
+
+book6 = book1;
+
+console.log(book1 == book6) ;   //true
+
+
 let book2 = {
     author: "William Shakespeare",
     editions: ["ed1", "ed2", "ed3", "ed4"]
@@ -153,7 +171,29 @@ let book4 = {
     editions: ["ed1", "ed2", "ed3", "ed4"]
 }
 
-book4 = Object.assign({}, book3)    //SHALLOW COPY
+let userName1 = "Pedro";
+let userName2 = "Michelle";
+
+userName2 = userName1;
+/*
+let userName1 = "Pedro";
+let userName2 = "Pedro";
+*/
+userName1 = "Xavi";
+/*
+let userName1 = "Xavi";
+let userName2 = "Pedro";
+*/
+
+let bookCopy1 = book3;  //NOT A GOOD WAY OF COPYING BECAUSE THEY POINT TO THE SAME OBJECT
+
+/*
+let book3 = {
+    author: "Charlotte Bronte",
+    editions: ["ed1", "ed2"] -> D5 editions[0], editions[1]
+}
+ */
+let bookCopy = Object.assign({}, book3)    //SHALLOW COPY
 book4.editions[0] = "hola";
 console.log("book4 ", book4);
 console.log("book3 ", book3);
@@ -173,3 +213,30 @@ const newStudents3 = JSON.parse(JSON.stringify(students));  //DEEP COPY
 const nesStudents4 = students.map((student) => {    //SHALLOW COPY
     return student;
 })
+
+
+
+let student1 = {
+    name: "Toni",
+    campus: "Barcelona",
+    grades: [{
+        lab: "recipes",
+        grade: 8
+    }, {
+        lab: "basic-algorithms",
+        grade: 7
+    }, {
+        lab: "array-methods",
+        grade: 6
+    }]
+}
+
+let studentCopy = Object.assign({}, student1);
+console.log("student1: ", student1);
+console.log("studentCopy: ", studentCopy);
+
+student1.name = "Antoni";
+studentCopy.grades[0].grade = 7;
+
+console.log("student1: ", student1);
+console.log("studentCopy: ", studentCopy);
