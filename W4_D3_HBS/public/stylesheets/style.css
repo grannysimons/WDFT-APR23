@@ -1,0 +1,13 @@
+/* body {
+    background-color: red;
+}
+
+.changes {
+    background-color: blueviolet;
+    color: yellowgreen;
+    font-family:'Courier New', Courier, monospace;
+} */
+
+.breadcrumb-custom {
+    background-color: lightcoral !important;
+}
