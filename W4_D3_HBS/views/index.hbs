@@ -97,6 +97,14 @@
         {{/each}}
     </table>
 
+    {{#if beers}}
+    <ul>
+        {{#each beers}}
+        <li>{{this.name}} - {{this.type}}</li>
+        {{/each}}
+    </ul>
+    {{/if}}
+
     <p>grades 3 and 0: {{grades.[3]}}, {{grades.[0]}}</p>
 
     <h3>First approach</h3>
