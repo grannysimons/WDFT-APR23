@@ -1,0 +1,33 @@
+
+//FILTERS
+
+//single filter
+{year: "2000"}
+
+//and filter
+{ $and: [{year: "2000"}, {director: "Darren Aronofsky"}] }
+{ $and: [{director: "Steven Spielberg"}, {year: {$gt: "2000"}}] }
+
+//or filter
+{ $or: [{director: "Steven Spielberg"}, {director: "Frank Darabont"}] }
+//nor filter
+{ $nor: [{director: "Steven Spielberg"}, {director: "Frank Darabont"}] }
+
+//comparisons:
+{ year: {$gt: "2000"} }
+{ year: {$gte: "2000"} }
+{ year: {$lt: "2000"} }
+{ year: {$lte: "2000"} }
+{ year: {$ne: "2000"} }
+
+//getting results in a list of values:
+{ genre: {$in:["Crime", "Drama"]} } //one of this values: "Crime", "Drama"
+{ year: {$in:["2000", "2002"]} }
+
+{ title: { $regex: /Oz/i } }
+
+
+//PROJECT
+{title: 1, year: 1, _id: 0}
+{ year: 0 }
+
