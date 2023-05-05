@@ -129,4 +129,22 @@ app.get("/createThings", (req, res, next)=>{
     // })
 })
 
+app.get("/tostring", (req, res, next)=>{
+    
+    //ANSWERING TONI T QUESTIONS:
+
+    // let newCat = new Cat({name: "boooo"})
+    // newCat.save()
+    // .then()
+    // .catch()
+
+    // Cat.create({name: "boooo"})
+    // .then()
+    // .catch()
+
+    console.log("toString: ", newCat.toString());
+    console.log("toObject", newCat.toObject());
+    res.send("boo");
+})
+
 app.listen(port, ()=>console.log("listening to port 3000"));
