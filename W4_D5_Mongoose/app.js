@@ -19,6 +19,7 @@ app.set("view engine", "hbs");
 //Read operation:
 app.get('/',(req, res, next)=>{
     //Cat.findOne() -> gets the first object
+    // Cat.findById()
     Cat.find({ age: { $gt: 2 } })   // -> gets an array of results
     .then(results => {
         console.log(results);
@@ -43,8 +44,8 @@ app.get("/create", (req, res, next)=>{
         age: 12
     }
 
-    Cat.insertMany([{name: "Hector", age: 23}, {name: "Mimi", age: 14}]) // --> creates many
-    // Cat.create(newCat) -> creates one
+    // Cat.insertMany([{name: "Hector", age: 23}, {name: "Mimi", age: 14}]) // --> creates many
+    Cat.create(newCat) //-> creates one
     .then(result => {
         console.log("result: ", result);
         res.send("Hiiiiii");

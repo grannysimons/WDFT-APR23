@@ -1,0 +1,17 @@
+{
+  "name": "w5_d1_params_middlewares_es6",
+  "version": "1.0.0",
+  "description": "",
+  "main": "destructuring.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "hbs": "^4.2.0",
+    "mongoose": "^7.1.0"
+  }
+}
