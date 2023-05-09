@@ -1,0 +1,24 @@
+<form class="mb-5" action="/results" method="GET">
+    <div class="mb-3 text-center">
+        <label for="titleInput" class="form-label">Title</label>
+        <input type="text" class="form-control" id="titleInput" aria-describedby="movie title" name="movieTitle">
+    </div>
+    <button type="submit" class="btn btn-primary">Find movie</button>
+</form>
+<div class="row">
+    {{#if movies}}
+    {{#each movies}}
+    <div class="col-4">
+        <div class="card m-1">
+            <div class="card-body">
+                <h5 class="card-title">{{this.title}}</h5>
+                <p class="card-text">Year: {{this.year}}</p>
+                <a href="/{{this._id}}" class="btn btn-primary">More info</a>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+    {{else}}
+    <p>Sorry, no results matches your filter</p>
+    {{/if}}
+</div>

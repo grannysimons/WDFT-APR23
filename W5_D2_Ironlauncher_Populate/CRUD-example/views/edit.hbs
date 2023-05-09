@@ -1,0 +1,31 @@
+<form action="/{{_id}}/edit" method="POST" >
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingTitle" name="title" value="{{title}}">
+        <label for="floatingTitle">Title</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingDirector" name="director" value="{{director}}">
+        <label for="floatingDirector">Director</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingYear" name="year" value="{{year}}">
+        <label for="floatingYear">Year</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="duration" name="duration" value="{{duration}}">
+        <label for="duration">Duration</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="genre" value="{{genre}}" disabled>
+        <label for="genre">Genre</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="rate" name="rate" value="{{rate}}">
+        <label for="rate">Rate</label>
+    </div>
+      <button type="submit" class="btn btn-primary">Update movie</button>
+</form>
+
+<form action="/{{_id}}/delete" method="POST">
+    <button type="submit" class="btn btn-danger">Delete movie</button>
+</form>
