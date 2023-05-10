@@ -5,11 +5,16 @@ const saltRounds = 14; //recommended values: 10-14
 
 const User = require("../models/User.model");
 
-router.get("/signup", (req, res, next) => {
+// const isLoggedIn = require("../middleware/isLoggedIn");
+// const isLoggedOut = require("../middleware/isLoggedOut");
+
+let {isLoggedIn, isLoggedOut} = require("../middleware/auth.middleware");
+
+router.get("/signup", isLoggedOut, (req, res, next) => {
   res.render("signup");
 });
 
-router.post("/signup", (req, res, next) => {
+router.post("/signup", isLoggedOut, (req, res, next) => {
   //signup process
 
   let { username, password, passwordRepeat } = req.body;
@@ -69,11 +74,11 @@ router.post("/signup", (req, res, next) => {
   })
 })
 
-router.get("/login", (req, res, next) => {
+router.get("/login", isLoggedOut, (req, res, next) => {
   res.render("login");
 });
 
-router.post("/login", (req, res, next) => {
+router.post("/login", isLoggedOut, (req, res, next) => {
   //login process
   let {username, password} = req.body;
 
@@ -102,8 +107,16 @@ router.post("/login", (req, res, next) => {
   })
 })
 
-router.get("/profile", (req, res, next)=>{
+router.get("/profile", isLoggedIn, (req, res, next)=>{
   res.send("PROFILE OF " + req.session.currentUser);
+})
+
+router.get("/logout", isLoggedIn, (req, res, next) => {
+  req.session.destroy((err) => {
+    if(err) next(err);
+    else res.redirect("/users/login");
+  });
+
 })
 
 module.exports = router;
