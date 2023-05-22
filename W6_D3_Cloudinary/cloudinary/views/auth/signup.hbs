@@ -1,0 +1,28 @@
+<div id="form">
+  <h2>Sign Up</h2>
+  <form action="/auth/signup" method="POST" enctype="multipart/form-data">
+
+    <label> Username
+      <input type="text" name="username" placeholder="Your username" />
+    </label>
+
+    <label> Email
+      <input type="email" name="email" placeholder="Your email" />
+    </label>
+
+    <label> Password
+      <input type="password" name="password" placeholder="Your password" />
+    </label>
+
+    <label> Profile image
+      <input type="file" name="image" placeholder="Your image" multiple />
+    </label>
+
+    <button type="submit">Sign Up</button>
+
+
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </form>
+</div>
