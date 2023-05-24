@@ -50,6 +50,12 @@ function MovieList() {
 
     const [movies, setMovies] = useState(moviesArray);
     const [showMovies, setShowMovies] = useState(false);
+    const [filterText, setFilterText] = useState("");
+    const [title, setTitle] = useState("");
+    const [director, setDirector] = useState("");
+    const [hasOscars, setHasOscars] = useState(false);
+    const [IMDBRating, setIMDBRating] = useState("");
+
     // let elements = [1,2,3,4];
     let elements = [1, 2, "HOLA", 4, ","];
     // let students = [<li>Lisa</li>, <li>Pedro</li>, <li>Toni</li>];
@@ -64,8 +70,46 @@ function MovieList() {
     const hideMovies = () => {
         setShowMovies(!showMovies);
     }
+    const filterMovies = (e) => {
+        e.preventDefault();
+        setMovies(movies.filter((movie) => movie.title.includes(filterText)))
+    }
+
+    const inputChanges = (e) => {
+        console.log("input changes!!");
+        setFilterText(e.target.value)
+        setMovies(movies.filter((movie) => movie.title.includes(e.target.value))) 
+    }
+
+    const createMovie = (e) => {
+        e.preventDefault();
+
+        let newMovie = {
+            "_id": Math.round(Math.random()*10000000000000000000),
+            "title": title,
+            "director": director,
+            "hasOscars": hasOscars,
+            "IMDBRating": IMDBRating
+        }
+        setMovies([...movies, newMovie]);
+    }
 
     return (<div>
+        <form>
+            <input type="text" value={filterText} onChange={inputChanges} />
+            {/* <button onClick={filterMovies}>Filter</button> */}
+        </form>
+        <form>
+            <label htmlFor="title">title</label>
+            <input type="text" id="title" value={title} onChange={(e)=>setTitle(e.target.value)}/>
+            <label htmlFor="director">director</label>
+            <input type="text" id="director"  value={director} onChange={(e) => setDirector(e.target.value)}/>
+            <label htmlFor="hasOscars">hasOscars</label>
+            <input type="checkbox" id="hasOscars" checked={hasOscars} onChange={(e)=>setHasOscars(e.target.checked)}/>
+            <label htmlFor="IMDBRating">IMDBRating</label>
+            <input type="number" id="IMDBRating" value={IMDBRating} onChange={(e)=>setIMDBRating(e.target.value)}/>
+            <button onClick={createMovie}>Create movie</button>
+        </form>
         {showMovies && <ol>
             {/* {students.map(student => <li>{student}</li>)} */}
             {movies.map((movie, k) => <MovieCard movie={movie} key={movie._id} deleteHandler={() => deleteMovie(movie._id)} />)}
