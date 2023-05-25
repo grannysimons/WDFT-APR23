@@ -2,6 +2,7 @@ import { useState } from "react";
 import Summary from "./Summary";
 import Task from "./Task";
 import './ToDoList.css';
+import CreateTaskForm from "./CreateTaskForm";
 
 const initialTasksList = [{
     _id: "1a",
@@ -25,6 +26,7 @@ const initialTasksList = [{
 function ToDoList() {
 
   const [tasksList, setTasksList] = useState(initialTasksList);
+  //title and description state will only be needed if the form is managed directly in this ToDoList component. If we use a CreatTaskForm component, this states will be set there:
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
@@ -72,6 +74,10 @@ function ToDoList() {
 
   }
 
+  const createTaskFromComponent = (newTask) => {
+    setTasksList([...tasksList, newTask]);
+  }
+
   const titleHandler = (e)=>{
     setTitle(e.target.value);
   }
@@ -91,14 +97,15 @@ function ToDoList() {
 
                 {/* {[<Task task={tasksList[0]}/>, <Task task={tasksList[1]}/>, <Task task={tasksList[2]}/>]} */}
             </div>
-            <form>
+            {/* <form>
                 <h1>Create task</h1>
                 <label htmlFor="title">title</label>
                 <input type="text" id="title" value={title} onChange={titleHandler} />
                 <label htmlFor="description">description</label>
                 <input type="text" id="description" value={description} onChange={descriptionHandler}/>
                 <button onClick={createTask}>create task</button>
-            </form>
+            </form> */}
+            <CreateTaskForm createTask={createTaskFromComponent} />
         </div>
     );
 }

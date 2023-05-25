@@ -45,6 +45,8 @@ const moviesArray = [
 import { useState } from 'react';
 import MovieCard from './MovieCard';
 import './MovieList.css';
+import CreateMovieForm from './CreateMovieForm';
+import FilterForm from './FilterForm';
 
 function MovieList() {
 
@@ -75,12 +77,19 @@ function MovieList() {
         setMovies(movies.filter((movie) => movie.title.includes(filterText)))
     }
 
+    //inputChanges is a function that handles the event of changing the input WHEN THE FORM IS INSIDE THIS MOVIELIST COMPONENT:
     const inputChanges = (e) => {
         console.log("input changes!!");
         setFilterText(e.target.value)
         setMovies(movies.filter((movie) => movie.title.includes(e.target.value))) 
     }
 
+    //inputChangesFromComponent is a function that handles the event of changing the input WHEN THE FORM IS IN A CHILD COMPONENT (FILTERFORM):
+    const inputChangesFromComponent = (text) => {
+        setMovies(movies.filter((movie) => movie.title.includes(text))) 
+    }
+
+    //createMovie is a function that handles the event of clicking on the button WHEN THE FORM IS INSIDE THIS MOVIELIST COMPONENT:
     const createMovie = (e) => {
         e.preventDefault();
 
@@ -94,12 +103,18 @@ function MovieList() {
         setMovies([...movies, newMovie]);
     }
 
+    //createMovieFromComponent is a function that handles the event of clicking on the button WHEN THE FORM IS IN A CHILD COMPONENT:
+    const createMovieFromComponent = (newMovie) => {
+        setMovies([...movies, newMovie]);
+    }
+
     return (<div>
-        <form>
-            <input type="text" value={filterText} onChange={inputChanges} />
+        {/* <form>
+            <input type="text" value={filterText} onChange={inputChanges} /> */}
             {/* <button onClick={filterMovies}>Filter</button> */}
-        </form>
-        <form>
+        {/* </form> */}
+        <FilterForm filterMovies={inputChangesFromComponent}/>
+        {/* <form>
             <label htmlFor="title">title</label>
             <input type="text" id="title" value={title} onChange={(e)=>setTitle(e.target.value)}/>
             <label htmlFor="director">director</label>
@@ -109,7 +124,8 @@ function MovieList() {
             <label htmlFor="IMDBRating">IMDBRating</label>
             <input type="number" id="IMDBRating" value={IMDBRating} onChange={(e)=>setIMDBRating(e.target.value)}/>
             <button onClick={createMovie}>Create movie</button>
-        </form>
+        </form> */}
+        <CreateMovieForm createMovie={createMovieFromComponent}/>
         {showMovies && <ol>
             {/* {students.map(student => <li>{student}</li>)} */}
             {movies.map((movie, k) => <MovieCard movie={movie} key={movie._id} deleteHandler={() => deleteMovie(movie._id)} />)}
