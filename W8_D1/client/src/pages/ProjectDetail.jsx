@@ -1,7 +1,8 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import CreateTask from '../components/CreateTask';
+import { projectsContext } from '../contexts/projects.context';
 
 let baseURL = 'http://localhost:5005/api/projects/';
 
@@ -11,14 +12,15 @@ export default function ProjectDetail() {
 
     const [project, setProject] = useState({});
 
+    const {projects, getProjects} = useContext(projectsContext);
+
     useEffect(()=>{
-        axios.get(baseURL + projectId)
-        .then(({data}) => {
-            console.log(data);
-            setProject(data);
-        })
-        .catch(err => console.log(err))
+        getProjects();
     }, []);
+
+    useEffect(()=>{
+        setProject(projects.find(project => project._id == projectId))
+    }, [projects]);
     
     const createTask = (newTask) => {
         axios.post(baseURL + projectId + '/addTask', {task: newTask})

@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { projectsContext } from "../contexts/projects.context";
 
-export default function CreateProject({createProjectFunc}) {
+export default function CreateProject() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+
+    const {createProject} = useContext(projectsContext); 
 
     const submitHandler = (e) => {
         e.preventDefault();
         let newProject = {title, description};
-        createProjectFunc(newProject);
+        // createProjectFunc(newProject);
+        createProject(newProject)
+
     }
     return (
         <form onSubmit={submitHandler}>
